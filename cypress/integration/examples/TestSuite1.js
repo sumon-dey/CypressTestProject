@@ -27,7 +27,15 @@ describe("Test Suite 1",function(){
 
         // Validation of the create a new account link
         cy.get("a:contains('Create a new account')").should("be.visible")
+    })
+    it("Incorrect username and password should not allow user to log in",function(){
+        cy.get("input[name='user[email]']").type("Sam")
+        cy.get("input[name='user[password]']").type("Doe")
+        cy.get("[id='user[remember_me]']").check().should("be.checked")
+        cy.get("input[value='Sign in']").click()
+        cy.wait(15000)
 
-
+        // Validation of the error message for incorrect username or password
+        cy.get("#notice>ul>li").should('have.text','Invalid Email or password.')
     })
 })
