@@ -38,4 +38,23 @@ describe("Test Suite 1",function(){
         // Validation of the error message for incorrect username or password
         cy.get("#notice>ul>li").should('have.text','Invalid Email or password.')
     })
+    it("The Forgot Password page should get correctly displayed",function(){
+        cy.get(".form__forgot-password").click()
+        cy.get("h1:contains('Forgot your Password?')").should("be.visible")
+        cy.get("p:contains('Enter the email you signed up with and we will send you reset instructions.')").should("be.visible")
+        cy.get("input[id='user[email]'][placeholder='Email']").should("be.visible").should("be.enabled")
+        cy.get("input[value='Submit']").should("be.enabled")
+
+        // Validation of the Email textbox field in the Forgot Password page
+        cy.get("input[id='user[email]'][placeholder='Email']").type("test@test.com")
+        cy.get("input[value='Submit']").click()
+        cy.get("h1:contains('Help is on the way!')").should("be.visible")
+        //cy.get("p").should("include.text","We've sent you a password reset email.Please check your inbox.")
+        cy.get("p").then(function(element){
+            const actualText=element.text()
+            expect(actualText.includes("We've sent you a password reset email.")).to.be.true
+            expect(actualText.includes("Please check your inbox.")).to.be.true
+        })
+
+    })
 })
