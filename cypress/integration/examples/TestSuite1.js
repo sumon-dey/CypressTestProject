@@ -55,6 +55,14 @@ describe("Test Suite 1",function(){
             expect(actualText.includes("We've sent you a password reset email.")).to.be.true
             expect(actualText.includes("Please check your inbox.")).to.be.true
         })
-
+    })
+    it.only("New Account should get created successfully",function(){
+        cy.contains("Create a new account").should("be.enabled").click()
+        cy.get("[id='user[first_name]']").type("Hello")
+        cy.get("[name='user[last_name]']").type("World")
+        cy.get("input[type='email']").type("test@test.com")
+        cy.get("input[type='password']").type("123456")
+        cy.get("input[type='checkbox']").should("be.enabled").check().should("be.checked")
+        cy.get("input[value='Sign up']").click()
     })
 })
