@@ -56,7 +56,7 @@ describe("Test Suite 1",function(){
             expect(actualText.includes("Please check your inbox.")).to.be.true
         })
     })
-    it.only("New Account should get created successfully",function(){
+    it("New Account should get created successfully",function(){
         cy.contains("Create a new account").should("be.enabled").click()
         cy.get("[id='user[first_name]']").type("Hello")
         cy.get("[name='user[last_name]']").type("World")
