@@ -7,5 +7,11 @@ describe("Test Suite 2",function(){
     it("Page should get launched successfully and title should get correctly displayed",function(){       
         cy.title().should("eq", "Simple HTML Elements For Automation - Ultimate QA")
         cy.location("href").should("eq","https://ultimateqa.com/simple-html-elements-for-automation/")
+    })
+    it("All the header links should be visible and should be in enabled condition",function(){
+        cy.get("a:contains('Courses')").should("be.visible").should("not.be.disabled")
+        cy.get("a:contains('Selenium Resources')").should("be.visible").should("not.be.disabled")
+        cy.get("a:contains('Automation Exercises')").should("be.visible").should("not.be.disabled")
+        cy.get("a:contains('Blog')").should("be.visible").should("not.be.disabled")
     })    
 })
