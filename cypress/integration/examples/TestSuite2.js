@@ -13,5 +13,10 @@ describe("Test Suite 2",function(){
         cy.get("a:contains('Selenium Resources')").should("be.visible").should("not.be.disabled")
         cy.get("a:contains('Automation Exercises')").should("be.visible").should("not.be.disabled")
         cy.get("a:contains('Blog')").should("be.visible").should("not.be.disabled")
+    })
+    it("Clicking on the \"Click Me\" button should display the button success message",function(){
+        cy.get("a:contains('Click Me')").should("be.enabled").click()
+        cy.get("h1.entry-title").as("ClickMeButton")
+        cy.get("@ClickMeButton").should("have.text","Button success")
     })    
 })
