@@ -24,4 +24,9 @@ describe("Test Suite 2",function(){
         cy.get("#simpleElementsLink").should("be.enabled").click()
         cy.get("h1.entry-title").should("have.text","Link success")
     })
+    it("Clicking on the id-button should display the button success message",function(){
+        cy.visit("https://ultimateqa.com/simple-html-elements-for-automation/")
+        cy.contains("Click this button using \"ID\"").click()
+        cy.get("h1.entry-title").should("have.text","Button success")
+    })
 })
